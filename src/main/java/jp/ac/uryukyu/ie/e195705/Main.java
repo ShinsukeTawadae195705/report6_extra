@@ -33,8 +33,9 @@ class Words {
 
 class Character{
     String name;
-    String word_end;
-    String word_initial;
+    static String word_end;//変数を継承したいからstatic
+    static String word_initial;
+    static String input;
 
     void Name(String name){
         this.name = name;
@@ -78,7 +79,6 @@ class Computer extends Character{
 
 class Action_0 extends Character{
     int count = 0;
-    String input;//userが入力した文字列を保存する
 
     public void Action_0(){
         Words word = new Words();
@@ -86,8 +86,6 @@ class Action_0 extends Character{
         Words char_word = new Words();
         char_word.char_words();
         while (count <= 0){
-            Scanner scanner = new Scanner(System.in);
-            input = scanner.nextLine();
             word_end = input.substring(input.length() -1);//入力した文字列の末尾1文字を取得する
             if (word_end.matches("[ア-ン]")) {//正規表現は""で括る
                 if (word_end.matches(("[ヌワヲ]"))) {
@@ -100,11 +98,11 @@ class Action_0 extends Character{
                     System.out.println("あ、それはなしで、、");
                     continue;
                 }
-                int num = char_word.char_words.indexOf(word_end);
-                word_initial = word.words.get(num).substring(word.words.get(num).length() -1);//しりとりマスターの返答の末尾1文字を取得
                 break;
             }else {
                 System.out.println("申し訳ないがカタカナ表記で頼む、、");
+                Scanner scanner = new Scanner(System.in);
+                input = scanner.nextLine();
             }
         }
     }
@@ -112,7 +110,6 @@ class Action_0 extends Character{
 
 class Action_1 extends Character{
     int count = 0;
-    String input;//userが入力した文字列を保存する
 
     public void Action_1(){
         Words word = new Words();
@@ -120,41 +117,60 @@ class Action_1 extends Character{
         Words char_word = new Words();
         char_word.char_words();
         while (count <= 0){
-            Scanner scanner = new Scanner(System.in);
-            input = scanner.nextLine();
-            word_end = input.substring(input.length() -1);//入力した文字列の末尾1文字を取得する
-            if (word_end.matches("[ア-ン]")) {//正規表現は""で括る
-                if (word_end.matches(("[ヌワヲ]"))) {
-                    System.out.println("そのような数学的単語は私には見つけられぬ、、\n貴様の勝ちだ");
-                    break;
-                }if (word_end.matches(("[ン]"))) {
-                    System.out.println("貴様はしりとりのルールも知らんのか！\nもう一回だ");
-                    break;
-                }if (word_end.matches("[ーャュョ　]")){
-                    System.out.println("あ、それはなしで、、");
-                    continue;
-                }
-                int num = char_word.char_words.indexOf(word_end);
-                System.out.println("→"+word.words.get(num));
-                word_initial = word.words.get(num).substring(word.words.get(num).length() -1);//しりとりマスターの返答の末尾1文字を取得
-                break;
-            }else {
-                System.out.println("申し訳ないがカタカナ表記で頼む、、");
-            }
+            int num = char_word.char_words.indexOf(word_end);
+            System.out.println("→"+word.words.get(num));
+            word_initial = word.words.get(num).substring(word.words.get(num).length() -1);//しりとりマスターの返答の末尾1文字を取得
+            break;
         }
     }
 }
 
-public class Main {
+class Action_2 extends Character{
+    void Action_2(){
+        Scanner scanner = new Scanner(System.in);
+        input = scanner.nextLine();
+        word_end = input.substring(0,1);
+    }
+}
+
+class Action_3 extends Character{
+    int count = 0;
+    Action_0 action_0 = new Action_0();
+    void Action_3(){
+        while (count <= 0)
+        if (word_initial.equals(word_end)) {
+            break;
+        }else{
+            System.out.println("違う違う");
+            action_0.Action_0();
+            Scanner scanner = new Scanner(System.in);
+            input = scanner.nextLine();
+            word_end = input.substring(0,1);
+        }
+    }
+}
+
+public class Main{
     public static void main(String[] args){
         int count = 0;
+        Player player = new Player();
+        Action_0 action_0 = new Action_0();
+        Computer computer = new Computer();
+        Action_1 action_1 = new Action_1();
+        Action_2 action_2 = new Action_2();
+        Action_3 action_3 = new Action_3();
+        player.Player_name("チャレンジャー");
+        action_2.Action_2();
         while (count <= 0){
-            Player player = new Player();
-            player.Player_name("チャレンジャー");
-            Action_0 action_0 = new Action_0();
             action_0.Action_0();
-            Action_1 action_1 = new Action_1();
+            computer.Computer_name("しりとりマスター");
             action_1.Action_1();
+            action_2.Action_2();
+            while (count <= 0){
+                action_3.Action_3();
+                action_0.Action_0();
+                break;
+            }
         }
     }
 }
