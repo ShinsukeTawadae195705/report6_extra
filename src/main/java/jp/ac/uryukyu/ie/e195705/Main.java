@@ -65,6 +65,9 @@ class Computer extends Character{
     }
 }
 
+/**
+ *しりとりのルールに従って、50音とその他を区別し、それぞれの処理を行っているクラス
+ */
 class Action_0 extends Character{
     int count = 0;
 
@@ -89,13 +92,14 @@ class Action_0 extends Character{
                 break;
             }else {
                 System.out.println("申し訳ないがカタカナ表記で頼む、、");
-                Scanner scanner = new Scanner(System.in);
-                input = scanner.nextLine();
             }
         }
     }
 }
 
+/**
+ * コンピューターが返す文字列を処理するクラス
+ */
 class Action_1 extends Character{
     int count = 0;
 
@@ -113,6 +117,9 @@ class Action_1 extends Character{
     }
 }
 
+/**
+ * 文字列を入力するクラス
+ */
 class Action_2 extends Character{
     void Action_2(){
         Scanner scanner = new Scanner(System.in);
@@ -121,6 +128,9 @@ class Action_2 extends Character{
     }
 }
 
+/**
+ * コンピューターが返した文字列の末尾1文字と今から入力する文字列の先頭1文字が一致するかを検証するクラス
+ */
 class Action_3 extends Character{
     int count = 0;
     Action_0 action_0 = new Action_0();
@@ -138,6 +148,9 @@ class Action_3 extends Character{
     }
 }
 
+/**
+ * それぞれで用意したクラスの処理をまとめて実行するクラス
+ */
 public class Main{
     public static void main(String[] args){
         int count = 0;
