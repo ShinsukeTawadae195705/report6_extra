@@ -57,23 +57,11 @@ class Player extends Character{
     void Player_name(String name){
         Name(name);
     }
-    void Player_word_end(String word_end){
-        Word_end(word_end);
-    }
-    void Player_word_initial(String word_initial){
-        Word_initial(word_initial);
-    }
 }
 
 class Computer extends Character{
     void Computer_name(String name){
         Name(name);
-    }
-    void Computer_word_end(String word_end){
-        Word_end(word_end);
-    }
-    void Computer_word_initial(String word_initial){
-        Word_initial(word_initial);
     }
 }
 
